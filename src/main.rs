@@ -8,6 +8,7 @@ enum RomanError {
     OutOfRange(i32),
 }
 
+// Function to convert Roman numerals to integers
 fn roman_to_integer(input: &str) -> Result<i32, RomanError> {
     let roman = input.trim().to_uppercase();
     if roman.is_empty() {
@@ -47,6 +48,7 @@ fn roman_to_integer(input: &str) -> Result<i32, RomanError> {
     Ok(total)
 }
 
+// Function to convert an integer to Roman numerals
 fn integer_to_roman(mut num: i32) -> String {
     let values = [
         (1000, "M"),
@@ -100,6 +102,7 @@ fn get_user_choice() -> UserChoice {
     }
 }
 
+// Function to handle conversion from integer to Roman numerals
 fn handle_integer_to_roman() {
     println!("Enter a year (e.g., 44 for AD 44, -44 for 44 BC).");
 
@@ -136,6 +139,7 @@ fn handle_integer_to_roman() {
     }
 }
 
+// Function to handle conversion from Roman numerals to integer
 fn handle_roman_to_integer() {
     println!("Enter Roman numerals (e.g., XIV, mmxix, etc.):");
 
@@ -183,6 +187,7 @@ fn main() {
 mod tests {
     use super::*;
 
+    // Tests for converting integers to Roman numerals
     #[test]
     fn test_integer_to_roman_basic() {
         assert_eq!(integer_to_roman(1), "I");
@@ -193,6 +198,7 @@ mod tests {
         assert_eq!(integer_to_roman(3999), "MMMCMXCIX");
     }
 
+    // Tests for converting Roman numerals to integers
     #[test]
     fn test_roman_to_integer_basic() {
         assert_eq!(roman_to_integer("I").unwrap(), 1);
