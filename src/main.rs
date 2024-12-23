@@ -1,15 +1,49 @@
 use std::collections::HashMap;
+use std::io;
 
 fn main() {
-    let roman = "MCMXCIV";
-    let integer = 1994;
+    loop {
+        println!("\nChoose an option:");
+        println!("1: Convert a year to Roman numerals");
+        println!("2: Convert Roman numerals to a year");
+        println!("3: Exit");
 
-    match roman_to_integer(roman) {
-        Some(value) => println!("The Roman numeral {} equals {}", roman, value),
-        None => println!("Invalid Roman numeral: {}", roman),
+        let mut choice = String::new();
+        io::stdin().read_line(&mut choice).expect("Failed to read input");
+
+        match choice.trim() {
+            "1" => {
+                println!("Enter a year (1-3999):");
+                let mut year = String::new();
+                io::stdin().read_line(&mut year).expect("Failed to read input");
+
+                if let Ok(year) = year.trim().parse::<i32>() {
+                    if year > 0 && year <= 3999 {
+                        println!("The Roman numeral for {} is {}", year, integer_to_roman(year));
+                    } else {
+                        println!("Year must be between 1 and 3999.");
+                    }
+                } else {
+                    println!("Invalid input. Please enter a valid year.");
+                }
+            }
+            "2" => {
+                println!("Enter Roman numerals:");
+                let mut roman = String::new();
+                io::stdin().read_line(&mut roman).expect("Failed to read input");
+
+                match roman_to_integer(roman.trim()) {
+                    Some(value) => println!("The year for Roman numeral {} is {}", roman.trim(), value),
+                    None => println!("Invalid Roman numeral input."),
+                }
+            }
+            "3" => {
+                println!("Exiting the program. Goodbye!");
+                break;
+            }
+            _ => println!("Invalid option. Please try again."),
+        }
     }
-
-    println!("The integer {} equals {}", integer, integer_to_roman(integer));
 }
 
 fn roman_to_integer(s: &str) -> Option<i32> {
