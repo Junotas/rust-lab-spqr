@@ -8,7 +8,7 @@ enum RomanError {
     OutOfRange(i32),
 }
 
-// Function to convert Roman numerals to integers
+// Function to convert Roman numerals to integers, ignore this just for a github action test
 fn roman_to_integer(input: &str) -> Result<i32, RomanError> {
     let roman = input.trim().to_uppercase();
     if roman.is_empty() {
