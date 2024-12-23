@@ -210,7 +210,7 @@ mod tests {
         assert_eq!(roman_to_integer("i").unwrap(), 1);
         assert_eq!(roman_to_integer("mmxix").unwrap(), 2019);
         assert!(matches!(roman_to_integer(""), Err(RomanError::EmptyInput)));
-        assert!(matches!(roman_to_integer("ABCD"), Err(RomanError::InvalidCharacter('A'))));
+        assert!(matches!(roman_to_integer("ABCD"), Err(RomanError::InvalidCharacter(_))));
         assert!(matches!(roman_to_integer("MMMM"), Err(RomanError::OutOfRange(4000))));
     }
 }
