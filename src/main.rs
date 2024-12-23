@@ -2,10 +2,14 @@ use std::collections::HashMap;
 
 fn main() {
     let roman = "MCMXCIV";
+    let integer = 1994;
+
     match roman_to_integer(roman) {
         Some(value) => println!("The Roman numeral {} equals {}", roman, value),
         None => println!("Invalid Roman numeral: {}", roman),
     }
+
+    println!("The integer {} equals {}", integer, integer_to_roman(integer));
 }
 
 fn roman_to_integer(s: &str) -> Option<i32> {
@@ -32,4 +36,32 @@ fn roman_to_integer(s: &str) -> Option<i32> {
     }
 
     Some(total)
+}
+
+fn integer_to_roman(mut num: i32) -> String {
+    let values = [
+        (1000, "M"),
+        (900, "CM"),
+        (500, "D"),
+        (400, "CD"),
+        (100, "C"),
+        (90, "XC"),
+        (50, "L"),
+        (40, "XL"),
+        (10, "X"),
+        (9, "IX"),
+        (5, "V"),
+        (4, "IV"),
+        (1, "I"),
+    ];
+
+    let mut result = String::new();
+    for &(value, symbol) in &values {
+        while num >= value {
+            result.push_str(symbol);
+            num -= value;
+        }
+    }
+
+    result
 }
